@@ -23,6 +23,7 @@ endnote: no
 library(knitr)
 library(kableExtra)
 library(benchmarkme)
+library(ggtree)
 knitr::opts_chunk$set(cache = TRUE,
                       message = FALSE, 
                       warning = FALSE,
@@ -130,9 +131,13 @@ library(ape)
 pdf("figs/UF.Raw.pdf", width = 8, height = 8)
 par(mfrow = c(ceiling(length(sqs.aln)/2),2))
 for (i in seq_along(sqs.aln)) {
-  if(!is.null(sqs.aln[[i]]$Aln.Original)){
-  image(sqs.aln[[i]]$Aln.Original, main = names(sqs.aln)[i], show.labels = FALSE, xlab = "Position",
-        ylab = "Species", legend = FALSE)
+  if (!is.null(sqs.aln[[i]]$Aln.Original)){
+  image(sqs.aln[[i]]$Aln.Original,
+        main = names(sqs.aln)[i], 
+        show.labels = FALSE, 
+        xlab = "Position",
+        ylab = "Species", 
+        legend = FALSE)
   }
 }
 sv <- dev.off()
@@ -143,9 +148,13 @@ sv <- dev.off()
 pdf("figs/UF.Cur.pdf", width = 8, height = 8)
 par(mfrow = c(ceiling(length(sqs.aln)/2),2))
 for (i in seq_along(sqs.aln)) {
-  if(!is.null(sqs.aln[[i]]$Aln.Masked)){
-  image(sqs.aln[[i]]$Aln.Masked, main = names(sqs.aln)[i], show.labels = FALSE, xlab = "Position",
-        ylab = "Species", legend = FALSE)
+  if(!is.null(sqs.aln[[i]]$Aln.Masked)) {
+  image(sqs.aln[[i]]$Aln.Masked, 
+        main = names(sqs.aln)[i], 
+        show.labels = FALSE, 
+        xlab = "Position",
+        ylab = "Species", legend = FALSE
+        )
   }
 }
 sv <- dev.off()
@@ -165,46 +174,93 @@ In total, the lines of code in this section took `r round(end_time-start_time)` 
 Phylogenetic inference is conducted using the `tree.raxml()` function. To use this function, we will necessarily have to save our folders locally. We will follow the same folder structure as if we were exporting everything locally ([NEED FIGURE]). Specifically, our sequence alignments are going to be located in `2.Alignments` and we will exclusively focus on the masked ones.
 
 
-```{r}
+```{r message=FALSE, warning=FALSE}
 dir.create("2.Alignments")
-lapply(seq_along(sqs.aln$Aln.Masked), function(x){
-  Biostrings::writeXStringSet(sqs.aln$Aln.Masked[[x]], filepath = paste0("2.Alignments/Masked_", names(sqs.aln$Aln.Masked)[x]))
+lapply(seq_along(sqs.aln), function(x){
+  ape::write.FASTA(sqs.aln[[x]]$Aln.Masked, 
+                   file = paste0(
+                     "2.Alignments/Masked_", names(sqs.aln)[x], ".fasta"
+                     )
+                   )
 })
 ```
 
-We are now ready to run RAxML with our local sequences. Note that in `tree.raxml()`, we need to indicate where the aligned sequences are located (`folder` argument), the patterns of the files in the same folder (`FilePatterns` argument; "`Masked_`" in our case), and the total of boostrap replicates. The `outgroup` argument is optional.
+We are now ready to run RAxML with our local sequences. Note that in `tree.raxml()`, we need to indicate where the aligned sequences are located (`folder` argument), the patterns of the files in the same folder (`FilePatterns` argument; "`Masked_`" in our case), and the total of boostrap replicates. The `outgroup` argument is optional but since we are interested in calibrating our tree, we will define it (i.e. species in __Polyplectron__).
 
 
-```{r eval=FALSE}
-tree.raxml(folder='2.Alignments', 
-           FilePatterns= 'Masked_', 
-           raxml_exec='raxmlHPC', 
-           Bootstrap=100, 
-           #outgroup ="Manis_pentadactyla"
+```{r message=FALSE, warning=FALSE}
+outgroup <- sqs.curated$Taxonomy[sqs.curated$Taxonomy$genus == 'Polyplectron',]
+
+tree.raxml(folder = '2.Alignments', 
+           FilePatterns = 'Masked_', 
+           raxml_exec = 'raxmlHPC', 
+           Bootstrap = 100,
+           outgroup = paste(outgroup$species_names, collapse = ",")
            )
 ```
 
-The trees are saved in `3.Phylogeny`. Likely, the bipartitions tree, "RAxML_bipartitions.phruta", is the most relevant. `3.Phylogeny` also includes additional `RAxML`-related input and output files. Below is the resulting phylogeny from these analyses.
+The trees are saved in `3.Phylogeny`. Likely, the bipartitions tree, "RAxML_bipartitions.phruta", is the most relevant. `3.Phylogeny` also includes additional `RAxML`-related input and output files. Below is the resulting phylogeny from these analyses. The resulting tree is presented in \@ref(fig:raxmlphylo).
+
+
+```{r timetreePlot, message=FALSE, warning=FALSE, include = FALSE}
+library(phytools)
+raxmlTree <- read.tree("3.Phylogeny/RAxML_bipartitions.phruta")
+raxmlTree$root.edge <- 0.01
+raxmlTree <- rootedge.to.singleton(raxmlTree)
+
+pdf("figs/raxml_ingroup.pdf", width = 8, height = 8)
+plotTree(ladderize(raxmlTree, right = FALSE))
+nodelabels(text = raxmlTree$node.label,
+           node = 1:raxmlTree$Nnode + Ntip(raxmlTree),
+           frame = "none", 
+           adj = c(1.1, -0.4)
+           )
+dev.off()
+```
 
 
 ### Tree dating in `phruta`
 
-Finally, let's perform tree dating in our phylogeny using secondary calibrations extracted from [Scholl and Wiens (2016)](https://royalsocietypublishing.org/doi/pdf/10.1098/rspb.2016.1334). I am only using this study because it has a large phylogeny but I expect to replace it in the near future. Note that `tree.dating()` requieres the user to specify where the `1.Taxonomy.csv` file is. This file is created automatically when sequences are curated using `sq.curate()` and results are exported to your local repository. However, since we were keeping results in the environment, we will have to export it before we can move foward.
+Finally, let's perform tree dating in our phylogeny using secondary calibrations extracted from [Scholl and Wiens (2016)](https://royalsocietypublishing.org/doi/pdf/10.1098/rspb.2016.1334). I am only using this study because it has a large phylogeny but I expect to replace it in the near future. Note that `tree.dating()` requieres the user to specify where the `1.Taxonomy.csv` file is. This file is created automatically when sequences are curated using `sq.curate()` and results are exported to your local repository. However, since we were keeping results in the environment, we will have to export it before we can move forward.
 
-```{r}
+```{r message=FALSE, warning=FALSE}
 dir.create("1.CuratedSequences")
-write.csv(sqs.curated, '1.CuratedSequences/1.Taxonomy.csv')
+write.csv(sqs.curated$Taxonomy, '1.CuratedSequences/1.Taxonomy.csv')
 ```
 
-Tree dating is performed using the `tree.dating()` function in `phruta`. We have to provide the name of the folder containing the `1.Taxonomy.csv` file created in `sq.curate()`. We also have to indicate the name of the folder containing the `RAxML_bipartitions.phruta` file. We will scale our phylogeny using `treePL`.
+Tree dating is performed using the `tree.dating()` function in `phruta`. We have to provide the name of the folder containing the `1.Taxonomy.csv` file created in `sq.curate()`. We also have to indicate the name of the folder containing the `RAxML_bipartitions.phruta` file. We will scale our phylogeny using `treePL`. 
 
-```{r eval=FALSE}
-tree.dating(taxonomyFolder="1.CuratedSequences", 
-            phylogenyFolder="3.Phylogeny", 
-            scale='treePL')
+```{r message=FALSE, warning=FALSE}
+tree.dating(taxonomyFolder = "1.CuratedSequences", 
+            phylogenyFolder = "3.Phylogeny", 
+            scale = 'treePL')
 ```
 
-Running this line will result in a new folder `4.Timetree`, including the different time-calibrated phylogenies obained (if any) and associated secondary calibrations used in the analyses. We found only a few overlapping calibration points (family-level constraints):
+```{r timetree, include=FALSE}
+library(strap)
+calTree <- read.tree("4.Timetree/family-levelCalibration.tre")
+calTree$root.edge <- 1
+calTree2 <- calTree
+calTree2$root.time <- max(nodeHeights(calTree2))
+
+#Need to adjust margins
+pdf("figs/phylo_ingroup.pdf", width = 8, height = 8)
+geoscalePhylo(tree = ladderize(calTree2,right = FALSE), 
+              units = c("Epoch", "Age"), 
+              boxes = "Epoch",   
+              cex.tip = 0.7, 
+              cex.age = 0.7, 
+              cex.ts = 0.7, 
+              label.offset = 0, 
+              x.lim = c(-15, max(nodeHeights(calTree2))), 
+              lwd = 3, 
+              width = 2, 
+              quat.rm = TRUE, 
+              root.edge = TRUE)
+dev.off()
+```
+
+Running this line will result in a new folder `4.Timetree`, including the different time-calibrated phylogenies obtained (if any) and associated secondary calibrations used in the analyses. The resulting time-calibrated tree is presented in \@ref(fig:timecaltree).
 
 
 ## Advanced methods with phruta 
@@ -215,8 +271,8 @@ Running this line will result in a new folder `4.Timetree`, including the differ
 You can use `taxonomy.retrieve()`, a function implemented inside `sq.curate()` in `phruta` to curate species names regardless of the kingdom. For instance, the block of code below will curate taxonomic names using the gbif taxonomic backbone. Note that the `kingdom` argument in `taxonomy.retrieve()` can be set to `NULL`, meaning that there wont be indication on the kingdom when performing taxonomic searches.
 
 
-```{r eval=FALSE}
-taxonomy.retrieve(species_names=c("Felis_catus", "PREDICTED:_Vulpes",
+```{r message=FALSE, warning=FALSE}
+phruta:::taxonomy.retrieve(species_names=c("Felis_catus", "PREDICTED:_Vulpes",
                   "Phoca_largha", "PREDICTED:_Phoca" ,
                   "PREDICTED:_Manis" , "Felis_silvestris" , "Felis_nigripes"),
                   database='gbif', kingdom=NULL)
@@ -224,8 +280,8 @@ taxonomy.retrieve(species_names=c("Felis_catus", "PREDICTED:_Vulpes",
 
 However, `gbif` is efficient for retrieving accurate taxonomy when we provide details on the `kingdom`. Given that all the species we're interested in are animals, we could just use the following block of code to curate taxonomic names.
 
-```{r eval=FALSE}
-taxonomy.retrieve(species_names=c("Felis_catus", "PREDICTED:_Vulpes",
+```{r message=FALSE, warning=FALSE}
+phruta:::taxonomy.retrieve(species_names=c("Felis_catus", "PREDICTED:_Vulpes",
                   "Phoca_largha", "PREDICTED:_Phoca" ,
                   "PREDICTED:_Manis" , "Felis_silvestris" , "Felis_nigripes"),
                   database='gbif', kingdom='animals')
@@ -235,8 +291,8 @@ Depending on your sampling, you could also do the same for plants by using `plan
 
 Now, let's assume that we were interested in curating our database using `itis`:
 
-```{r eval=FALSE}
-taxonomy.retrieve(species_names=c("Felis_catus", "PREDICTED:_Vulpes",
+```{r eval=FALSE, message=FALSE, warning=FALSE}
+phruta:::taxonomy.retrieve(species_names=c("Felis_catus", "PREDICTED:_Vulpes",
                   "Phoca_largha", "PREDICTED:_Phoca" ,
                   "PREDICTED:_Manis" , "Felis_silvestris" , "Felis_nigripes"),
                   database='itis')
@@ -249,6 +305,8 @@ Users sometimes need to generate tree constrains. `phruta` can automatically gen
 
 #### ingroup + outgroup constrains
 
+[This section needs more work]
+
 In this constraint type, `phruta` will create monophyletic groups using `tree.constraint()` for each of the taxonomic groups in the database (for selected target columns). Users will need to provide a path to the `1.Taxonomy.csv` file created using the `sq.curate()` function. Finally, `tree.constraint()` will generate tree with the same topology provided in the `Topology` argument. The user will provide the species names of the outgroup taxa as a vector of string that should fully match the names in the taxonomy file.
 
 ```{r eval=FALSE}
@@ -257,7 +315,7 @@ tree.constraint(
                 targetColumns = c("kingdom", "phylum", "class", "order", 
                                   "family", "genus", "species_names"),
                 Topology = "((ingroup), outgroup);",
-                outgroup = "Manis_pentadactyla"
+                outgroup = outgroup$species_names[2]
  )
 ```
 
@@ -269,7 +327,7 @@ In this constraint type, ``tree.constraint()`` will create a constraint tree for
 tree.constraint( taxonomy_folder = "1.CuratedSequences",
                  targetColumns = c("kingdom", "phylum", "class", 
                                    "order", "family", "genus", "species_names"),
-                 Topology = "((Felis), (Phoca));"
+                 Topology = "((Callipepla), (Polyplectron));"
  )
 ```
 
@@ -291,11 +349,11 @@ Unfortunately, the output files are not integrated with the current `phruta` pip
 
 Users can now run partitioned analyses in `RAxML` within `phruta`. This approach is implemented by setting the `partitioned` argument in `tree.raxml` to `TRUE`. For now, partitions are based on the genes are being analyzed. The same model is used to analyze each partition. More details on partitioned analyses can be customized by passing arguments in `ips::raxml`.
 
-```{r eval=FALSE}
+```{r}
 tree.raxml(folder = "2.Alignments", FilePatterns = "Masked_",
            raxml_exec = "raxmlHPC", Bootstrap = 100,
-           outgroup = "Manis_pentadactyla",
-           partitioned=T
+           outgroup = paste(outgroup$species_names, collapse = ","),
+           partitioned = TRUE
 )
 ```
 
@@ -303,9 +361,12 @@ tree.raxml(folder = "2.Alignments", FilePatterns = "Masked_",
 
 `phruta` can help users run `RogueNaRok` implemented in the `Rogue` R package. Users can then examine whether rogue taxa should be excluded from the analyses. `tree.roguetaxa()` uses the bootstrap trees generated using the `tree.raxml()` function along with the associated best tree to identify rogue taxa.
 
-```{r eval=FALSE}
+```{r}
 tree.roguetaxa(folder = "3.Phylogeny")
 ```
+
+
+
 
 Reproducibility with phruta Users can choose to share the script they used to run the analyses (e.g. assemble their molecular dataset) and the associated workspace.
 
@@ -350,6 +411,19 @@ knitr::include_graphics("./figs/UF.Raw.pdf")
 knitr::include_graphics("./figs/UF.Cur.pdf")
 ```
 
+\newpage
+
+```{r raxmlphylo, include=TRUE, fig.cap=c("RAxML phylo"), echo=FALSE}
+knitr::include_graphics("./figs/raxml_ingroup.pdf")
+```
+
+\newpage
+
+
+```{r timecaltree, include=TRUE, fig.cap=c("Time-calibrated phylogeny phylo"), echo=FALSE}
+knitr::include_graphics("./figs/phylo_ingroup.pdf")
+```
+
 
 \newpage
 
@@ -386,3 +460,29 @@ kable(sqs.curated$Taxonomy, caption = "Taxonomic information for the retrieved s
 kable(sqs.curated$Taxonomy.Sampling, caption = "Taxonomic sampling across gene regions", format = "latex") %>%
   kable_styling(latex_options = c("hold_position", "repeat_header"))
 ```
+
+
+
+\newpage
+
+```{r rogue, echo = FALSE}
+rt <- read.csv("3.1.RogueTaxa/RogueTaxa.csv")[,-1]
+kable(rt, caption = "Results of RogueNaRock", format = "latex") %>%
+  kable_styling(latex_options = c("hold_position", "repeat_header"))
+```
+
+
+```{r include=FALSE}
+unlink(c("0.Sequences", 
+         "1.CuratedSequences", 
+         "2.Alignments", 
+         "2.1.PartitionFinderv1",
+         "3.Phylogeny", 
+         "3.1.RogueTaxa",
+         "3.2.Phylogeny.constraint",
+         "4.Timetree"), 
+       recursive = TRUE)
+```
+
+
+
