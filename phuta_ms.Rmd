@@ -361,7 +361,7 @@ tree.raxml(folder = "2.Alignments", FilePatterns = "Masked_",
 
 `phruta` can help users run `RogueNaRok` implemented in the `Rogue` R package. Users can then examine whether rogue taxa should be excluded from the analyses. `tree.roguetaxa()` uses the bootstrap trees generated using the `tree.raxml()` function along with the associated best tree to identify rogue taxa.
 
-```{r}
+```{r message=FALSE, warning=FALSE}
 tree.roguetaxa(folder = "3.Phylogeny")
 ```
 
@@ -461,15 +461,19 @@ kable(sqs.curated$Taxonomy.Sampling, caption = "Taxonomic sampling across gene r
   kable_styling(latex_options = c("hold_position", "repeat_header"))
 ```
 
-
-
 \newpage
 
-```{r rogue, echo = FALSE}
+```{r include=FALSE}
 rt <- read.csv("3.1.RogueTaxa/RogueTaxa.csv")[,-1]
+
+```
+
+
+```{r rogue, echo = FALSE}
 kable(rt, caption = "Results of RogueNaRock", format = "latex") %>%
   kable_styling(latex_options = c("hold_position", "repeat_header"))
 ```
+\newpage
 
 
 ```{r include=FALSE}
