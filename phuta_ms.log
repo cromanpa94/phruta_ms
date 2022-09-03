@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.9.1)  2 SEP 2022 16:07
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.9.1)  3 SEP 2022 15:46
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -7,8 +7,8 @@ entering extended mode
 LaTeX2e <2022-06-01> patch level 5
 L3 programming layer <2022-08-30> (/Users/cristianroman/Library/TinyTeX/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2021/10/04 v1.4n Standard LaTeX document class
-(/Users/cristianroman/Library/TinyTeX/texmf-dist/tex/latex/base/size11.clo
-File: size11.clo 2021/10/04 v1.4n Standard LaTeX file (size option)
+(/Users/cristianroman/Library/TinyTeX/texmf-dist/tex/latex/base/size12.clo
+File: size12.clo 2021/10/04 v1.4n Standard LaTeX file (size option)
 )
 \c@part=\count185
 \c@section=\count186
@@ -505,12 +505,12 @@ LaTeX Font Info:    ... okay on input line 204.
 * \topmargin=-37.0pt
 * \headheight=12.0pt
 * \headsep=25.0pt
-* \topskip=11.0pt
+* \topskip=12.0pt
 * \footskip=30.0pt
-* \marginparwidth=59.0pt
+* \marginparwidth=44.0pt
 * \marginparsep=10.0pt
 * \columnsep=10.0pt
-* \skip\footins=10.0pt plus 4.0pt minus 2.0pt
+* \skip\footins=10.8pt plus 4.0pt minus 2.0pt
 * \hoffset=0.0pt
 * \voffset=0.0pt
 * \mag=1000
@@ -574,17 +574,17 @@ LaTeX Font Info:    Trying to load font information for TS1+ppl on input line 21
 File: ts1ppl.fd 2001/06/04 font definitions for TS1/ppl.
 )
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 9.37807pt on input line 215.
+(Font)              scaled to size 10.42007pt on input line 215.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 7.29405pt on input line 215.
+(Font)              scaled to size 7.91925pt on input line 215.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 5.21004pt on input line 215.
+(Font)              scaled to size 6.25204pt on input line 215.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 9.37807pt on input line 215.
+(Font)              scaled to size 10.42007pt on input line 215.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 7.29405pt on input line 215.
+(Font)              scaled to size 7.91925pt on input line 215.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 5.21004pt on input line 215.
+(Font)              scaled to size 6.25204pt on input line 215.
 LaTeX Font Info:    Trying to load font information for T1+phv on input line 221.
 (/Users/cristianroman/Library/TinyTeX/texmf-dist/tex/latex/psnfss/t1phv.fd
 File: t1phv.fd 2020/03/25 scalable font definitions for T1/phv.
@@ -592,347 +592,529 @@ File: t1phv.fd 2020/03/25 scalable font definitions for T1/phv.
 LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 223.
 (/Users/cristianroman/Library/TinyTeX/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
-) [1
+)
+Overfull \hbox (0.9514pt too wide) in paragraph at lines 242--261
+\T1/ppl/m/n/12 abil-ity in Gen-Bank is gen-er-ally not very straight-for-ward. For in-stance, the ge-netic makeup
+ []
+
+
+Overfull \hbox (23.59703pt too wide) in paragraph at lines 304--322
+\T1/ppl/m/n/12 down-load-ing and cu-rat-ing se-quences (e.g. it does not align se-quences). Sim-i-larly, \T1/cmtt/m/n/12 SuperCRUNCH
+ []
+
+
+Overfull \hbox (7.67708pt too wide) in paragraph at lines 304--322
+\T1/ppl/m/n/12 only cu-rates se-quences that are al-ready stored lo-cally. In fact, \T1/cmtt/m/n/12 phruta \T1/ppl/m/n/12 is closer to \T1/cmtt/m/n/12 SUPERSMART
+ []
+
+[1
 
 {/Users/cristianroman/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-Overfull \hbox (90.92906pt too wide) in paragraph at lines 352--362
-[]\T1/ppl/m/n/10.95 Third, users should down-load gene se-quences. Se-quences can be down-load us-ing the \T1/cmtt/m/n/10.95 sq.retrieve.indirect()
+Overfull \hbox (11.93398pt too wide) in paragraph at lines 352--362
+\T1/ppl/m/n/12 tion-ally, users can di-rectly down-load gene se-quences us-ing the \T1/cmtt/m/n/12 sq.retrieve.direct()
+ []
+
+
+Overfull \hbox (20.43182pt too wide) in paragraph at lines 352--362
+\T1/ppl/m/n/12 gene se-quences in \T1/cmtt/m/n/12 fasta \T1/ppl/m/n/12 files that will be lo-cated in a new di-rec-tory named \T1/cmtt/m/n/12 0.Sequences\T1/ppl/m/n/12 . 
+ []
+
+
+Overfull \hbox (62.96428pt too wide) in paragraph at lines 362--370
+\T1/ppl/m/n/12 di-rec-to-ries, com-bined se-quences in \T1/cmtt/m/n/12 0.Sequences \T1/ppl/m/n/12 and lo-cal se-quences in \T1/cmtt/m/n/12 0.AdditionalSequences
  []
 
 [2]
-Overfull \hbox (7.60764pt too wide) in paragraph at lines 393--402
-\T1/ppl/m/n/10.95 phy-logeny. Note that sam-pling in those phy-lo-ge-nies can be ex-am-ined us-ing \T1/cmtt/m/n/10.95 data(SW.phruta)\T1/ppl/m/n/10.95 .
- []
+
+LaTeX Warning: Reference `(' on page 3 undefined on input line 417.
+
+
+Package xcolor Warning: Incompatible color definition on input line 431.
 
 [3]
 
-Package xcolor Warning: Incompatible color definition on input line 420.
+Package xcolor Warning: Incompatible color definition on input line 435.
 
 
-Package xcolor Warning: Incompatible color definition on input line 424.
+Package xcolor Warning: Incompatible color definition on input line 435.
 
 
-Package xcolor Warning: Incompatible color definition on input line 424.
+Package xcolor Warning: Incompatible color definition on input line 452.
 
 
-Package xcolor Warning: Incompatible color definition on input line 440.
+Package xcolor Warning: Incompatible color definition on input line 457.
 
 
-Package xcolor Warning: Incompatible color definition on input line 445.
+Package xcolor Warning: Incompatible color definition on input line 457.
 
 
-Package xcolor Warning: Incompatible color definition on input line 445.
+LaTeX Warning: Reference `(' on page 4 undefined on input line 461.
+
+
+Overfull \hbox (47.72723pt too wide) in paragraph at lines 459--467
+\T1/ppl/m/n/12 Gen-Bank. The fre-quency es-ti-mates per gene are based on inter-specific sam-pling ([]tab:topGenes)).
+ []
+
+
+LaTeX Warning: Reference `(' on page 4 undefined on input line 482.
+
+
+Overfull \hbox (89.48714pt too wide) in paragraph at lines 475--483
+[]\T1/ppl/m/n/12 Next, we will as-sem-ble a species-level sum-mary of ac-ces-sion num-bers us-ing the \T1/cmtt/m/n/12 acc.table.retrieve()
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 484.
+
+
+Package xcolor Warning: Incompatible color definition on input line 492.
+
+
+Package xcolor Warning: Incompatible color definition on input line 492.
+
+
+Overfull \hbox (27.63557pt too wide) in paragraph at lines 494--516
+\T1/cmtt/m/n/12 sq.retrieve.indirect() \T1/ppl/m/n/12 in-stead of \T1/cmtt/m/n/12 sq.retrieve.direct() \T1/ppl/m/n/12 be-cause \T1/cmtt/m/n/12 sq.retrieve.indirect()
+ []
+
+
+Overfull \hbox (23.70915pt too wide) in paragraph at lines 494--516
+\T1/ppl/m/n/12 sion num-bers to be re-trieved us-ing \T1/cmtt/m/n/12 sq.retrieve.indirect()\T1/ppl/m/n/12 . In-stead, \T1/cmtt/m/n/12 sq.retrieve.direct()
+ []
 
 [4]
-Overfull \hbox (37.83263pt too wide) in paragraph at lines 463--471
-[]\T1/ppl/m/n/10.95 We will now as-sem-ble a species-level sum-mary of ac-ces-sion num-bers us-ing the \T1/cmtt/m/n/10.95 acc.table.retrieve()
+Overfull \hbox (33.0473pt too wide) in paragraph at lines 517--525
+\T1/cmtt/m/n/12 acc.table\T1/ppl/m/n/12 . Note that since we have spec-i-fied \T1/cmtt/m/n/12 download.sqs = FALSE \T1/ppl/m/n/12 in \T1/cmtt/m/n/12 sq.retrieve.indirect\T1/ppl/m/n/12 ,
  []
 
 
-Package xcolor Warning: Incompatible color definition on input line 472.
+Package xcolor Warning: Incompatible color definition on input line 526.
 
 
-Package xcolor Warning: Incompatible color definition on input line 482.
+Package xcolor Warning: Incompatible color definition on input line 531.
 
 
-Package xcolor Warning: Incompatible color definition on input line 482.
+Package xcolor Warning: Incompatible color definition on input line 531.
 
 
-Overfull \hbox (46.86131pt too wide) in paragraph at lines 484--505
-\T1/ppl/m/n/10.95 gnette us-ing \T1/cmtt/m/n/10.95 sq.retrieve.indirect() \T1/ppl/m/n/10.95 in-stead of \T1/cmtt/m/n/10.95 sq.retrieve.direct() \T1/ppl/m/n/10.95 be-cause \T1/cmtt/m/n/10.95 sq.retrieve.indirect()
+Overfull \hbox (10.9992pt too wide) in paragraph at lines 533--549
+\T1/cmtt/m/n/12 1\T1/ppl/m/n/12 , with all the tar-get gen-era be-ing sep-a-rated with \T1/cmtt/m/n/12 | \T1/ppl/m/n/12 (e.g. \T1/cmtt/m/n/12 "Callipepla|Colinus|Dendrortyx"
  []
 
 
-Overfull \hbox (50.92836pt too wide) in paragraph at lines 484--505
-\T1/ppl/m/n/10.95 set of taxa and set of gene re-gions. In short, you should be able to catch er-rors us-ing \T1/cmtt/m/n/10.95 sq.retrieve.indirect()
+Package xcolor Warning: Incompatible color definition on input line 550.
+
+
+Package xcolor Warning: Incompatible color definition on input line 555.
+
+
+Package xcolor Warning: Incompatible color definition on input line 555.
+
+
+LaTeX Warning: Reference `(' on page 5 undefined on input line 561.
+
+
+LaTeX Warning: Reference `(' on page 5 undefined on input line 563.
+
+
+LaTeX Warning: Reference `(' on page 5 undefined on input line 563.
+
+
+Overfull \hbox (22.93141pt too wide) in paragraph at lines 557--568
+\T1/ppl/m/n/12 with species-level names (\T1/cmtt/m/n/12 renamed_* \T1/ppl/m/n/12 pre-fix), (3) the ac-ces-sion num-bers ta-ble (\T1/cmtt/m/n/12 AccessionTable\T1/ppl/m/n/12 ;
  []
 
 
-Overfull \hbox (1.91081pt too wide) in paragraph at lines 506--515
-\T1/ppl/m/n/10.95 Note that since we have spec-i-fied \T1/cmtt/m/n/10.95 download.sqs = FALSE \T1/ppl/m/n/10.95 in \T1/cmtt/m/n/10.95 sq.retrieve.indirect\T1/ppl/m/n/10.95 , the se-quences
- []
+Package xcolor Warning: Incompatible color definition on input line 569.
 
 [5]
 
-Package xcolor Warning: Incompatible color definition on input line 516.
+Package xcolor Warning: Incompatible color definition on input line 573.
 
 
-Package xcolor Warning: Incompatible color definition on input line 520.
+Package xcolor Warning: Incompatible color definition on input line 573.
 
 
-Package xcolor Warning: Incompatible color definition on input line 520.
+LaTeX Warning: Reference `(' on page 6 undefined on input line 580.
 
 
-Overfull \hbox (54.66998pt too wide) in paragraph at lines 522--538
-\T1/ppl/m/n/10.95 for this. We will pro-vide a list of tax-o-nomic names to fil-ter out in-cor-rect se-quences (\T1/cmtt/m/n/10.95 filterTaxonomicCriteria
+LaTeX Warning: Reference `(' on page 6 undefined on input line 580.
+
+LaTeX Font Info:    Font shape `U/msa/m/n' will be
+(Font)              scaled to size 12.50409pt on input line 583.
+LaTeX Font Info:    Font shape `U/msa/m/n' will be
+(Font)              scaled to size 9.37807pt on input line 583.
+LaTeX Font Info:    Font shape `U/msa/m/n' will be
+(Font)              scaled to size 7.29405pt on input line 583.
+LaTeX Font Info:    Font shape `U/msb/m/n' will be
+(Font)              scaled to size 12.50409pt on input line 583.
+LaTeX Font Info:    Font shape `U/msb/m/n' will be
+(Font)              scaled to size 9.37807pt on input line 583.
+LaTeX Font Info:    Font shape `U/msb/m/n' will be
+(Font)              scaled to size 7.29405pt on input line 583.
+
+Overfull \hbox (12.6001pt too wide) in paragraph at lines 582--590
+[]\T1/ppl/m/n/12 In to-tal, code in this sec-tion took 4 min-utes to run in my lo-cal ma-chine (RAM: $\OT1/ppl/m/n/12 8.5899346 \OMS/zplm/m/n/12 ^^B
  []
 
 
-Package xcolor Warning: Incompatible color definition on input line 539.
+Package xcolor Warning: Incompatible color definition on input line 616.
 
-LaTeX Font Info:    Trying to load font information for TS1+cmtt on input line 541.
-(/Users/cristianroman/Library/TinyTeX/texmf-dist/tex/latex/base/ts1cmtt.fd
-File: ts1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
-)
-
-Package xcolor Warning: Incompatible color definition on input line 546.
-
-
-Package xcolor Warning: Incompatible color definition on input line 546.
-
-
-Package xcolor Warning: Incompatible color definition on input line 559.
-
-[6]
-
-Package xcolor Warning: Incompatible color definition on input line 563.
-
-
-Package xcolor Warning: Incompatible color definition on input line 563.
-
-LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 11.40997pt on input line 573.
-LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 8.33606pt on input line 573.
-LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 6.25204pt on input line 573.
-LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 11.40997pt on input line 573.
-LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 8.33606pt on input line 573.
-LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 6.25204pt on input line 573.
-
-Package xcolor Warning: Incompatible color definition on input line 593.
-
-LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <10.95> not available
-(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 596.
-
-Package xcolor Warning: Incompatible color definition on input line 604.
-
-
-Package xcolor Warning: Incompatible color definition on input line 604.
-
-[7]
 
 Package xcolor Warning: Incompatible color definition on input line 625.
 
 
-Package xcolor Warning: Incompatible color definition on input line 636.
+Package xcolor Warning: Incompatible color definition on input line 625.
 
 
-Package xcolor Warning: Incompatible color definition on input line 636.
-
-
-Overfull \hbox (1012.73817pt too wide) in paragraph at lines 640--640
-[]\T1/cmtt/m/n/10.95 ## [1] "raxmlHPC -T 4 -f a -p 1234 -x 1234 -m GTRGAMMA -o Polyplectron_inopinatum,Polyplectron_napoleonis,Polyplectron_chalcurum,Polyplectron_bicalcaratum,Polyplectron_malacense,Polyplectron_germaini,Polyplectron_katsumatae -k   -N 100   -s phruta.phy -n phruta"[] 
+Overfull \hbox (1326.73128pt too wide) in paragraph at lines 629--629
+[]\T1/cmtt/m/n/12 ## [1] "raxmlHPC -T 4 -f a -p 1234 -x 1234 -m GTRGAMMA -o Polyplectron_inopinatum,Polyplectron_napoleonis,Polyplectron_chalcurum,Polyplectron_bicalcaratum,Polyplectron_malacense,Polyplectron_germaini,Polyplectron_katsumatae,Polyplectron_schleiermacheri -k   -N 100   -s phruta.phy -n phruta"[] 
  []
 
 
-Overfull \hbox (1.84218pt too wide) in paragraph at lines 642--647
-[]\T1/ppl/m/n/10.95 The trees are saved in \T1/cmtt/m/n/10.95 3.Phylogeny\T1/ppl/m/n/10.95 . Likely, the bi-par-ti-tions tree, ``RAxML_bipartitions.phruta'',
+LaTeX Warning: Reference `(' on page 6 undefined on input line 636.
+
+
+Package xcolor Warning: Incompatible color definition on input line 645.
+
+[6]
+
+Package xcolor Warning: Incompatible color definition on input line 651.
+
+
+Package xcolor Warning: Incompatible color definition on input line 651.
+
+
+Package xcolor Warning: Incompatible color definition on input line 674.
+
+
+Package xcolor Warning: Incompatible color definition on input line 679.
+
+
+Package xcolor Warning: Incompatible color definition on input line 679.
+
+
+Overfull \hbox (6.04698pt too wide) in paragraph at lines 681--687
+\T1/ppl/m/n/12 We also have to in-di-cate the name of the folder con-tain-ing the \T1/cmtt/m/n/12 RAxML_bipartitions.phruta
  []
 
 
-Overfull \hbox (48.93977pt too wide) in paragraph at lines 642--647
-\T1/ppl/m/n/10.95 Be-low is the re-sult-ing phy-logeny from these anal-y-ses. The re-sult-ing tree is pre-sented in @ref(fig:raxmlphylo). 
+Package xcolor Warning: Incompatible color definition on input line 688.
+
+
+Package xcolor Warning: Incompatible color definition on input line 693.
+
+
+Package xcolor Warning: Incompatible color definition on input line 693.
+
+
+LaTeX Warning: Reference `(' on page 7 undefined on input line 698.
+
+
+Package xcolor Warning: Incompatible color definition on input line 716.
+
+[7]
+
+Package xcolor Warning: Incompatible color definition on input line 722.
+
+
+Package xcolor Warning: Incompatible color definition on input line 722.
+
+
+Overfull \hbox (17.95088pt too wide) in paragraph at lines 733--733
+[]\T1/cmtt/m/n/12 ##          kingdom   phylum    class     order   family genus          species[] 
  []
 
 
-Package xcolor Warning: Incompatible color definition on input line 664.
+Overfull \hbox (17.95088pt too wide) in paragraph at lines 733--733
+[]\T1/cmtt/m/n/12 ## 1       Animalia Chordata Mammalia Carnivora  Felidae Felis      Felis catus[] 
+ []
+
+
+Overfull \hbox (17.95088pt too wide) in paragraph at lines 733--733
+[]\T1/cmtt/m/n/12 ## 2 incertae sedis     <NA>     <NA>      <NA>     <NA>  <NA>             <NA>[] 
+ []
+
+
+Overfull \hbox (17.95088pt too wide) in paragraph at lines 733--733
+[]\T1/cmtt/m/n/12 ## 3       Animalia Chordata Mammalia Carnivora Phocidae Phoca     Phoca largha[] 
+ []
+
+
+Overfull \hbox (17.95088pt too wide) in paragraph at lines 733--733
+[]\T1/cmtt/m/n/12 ## 4 incertae sedis     <NA>     <NA>      <NA>     <NA>  <NA>             <NA>[] 
+ []
+
+
+Overfull \hbox (17.95088pt too wide) in paragraph at lines 733--733
+[]\T1/cmtt/m/n/12 ## 5 incertae sedis     <NA>     <NA>      <NA>     <NA>  <NA>             <NA>[] 
+ []
+
+
+Overfull \hbox (17.95088pt too wide) in paragraph at lines 733--733
+[]\T1/cmtt/m/n/12 ## 6       Animalia Chordata Mammalia Carnivora  Felidae Felis Felis silvestris[] 
+ []
+
+
+Overfull \hbox (17.95088pt too wide) in paragraph at lines 733--733
+[]\T1/cmtt/m/n/12 ## 7       Animalia Chordata Mammalia Carnivora  Felidae Felis   Felis nigripes[] 
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 740.
+
+
+Package xcolor Warning: Incompatible color definition on input line 746.
+
+
+Package xcolor Warning: Incompatible color definition on input line 746.
+
+
+Overfull \hbox (17.95088pt too wide) in paragraph at lines 757--757
+[]\T1/cmtt/m/n/12 ##          kingdom   phylum    class     order   family genus          species[] 
+ []
+
+
+Overfull \hbox (17.95088pt too wide) in paragraph at lines 757--757
+[]\T1/cmtt/m/n/12 ## 1       Animalia Chordata Mammalia Carnivora  Felidae Felis      Felis catus[] 
+ []
+
+
+Overfull \hbox (17.95088pt too wide) in paragraph at lines 757--757
+[]\T1/cmtt/m/n/12 ## 2 incertae sedis     <NA>     <NA>      <NA>     <NA>  <NA>             <NA>[] 
+ []
+
+
+Overfull \hbox (17.95088pt too wide) in paragraph at lines 757--757
+[]\T1/cmtt/m/n/12 ## 3       Animalia Chordata Mammalia Carnivora Phocidae Phoca     Phoca largha[] 
+ []
+
+
+Overfull \hbox (17.95088pt too wide) in paragraph at lines 757--757
+[]\T1/cmtt/m/n/12 ## 4 incertae sedis     <NA>     <NA>      <NA>     <NA>  <NA>             <NA>[] 
+ []
+
+
+Overfull \hbox (17.95088pt too wide) in paragraph at lines 757--757
+[]\T1/cmtt/m/n/12 ## 5 incertae sedis     <NA>     <NA>      <NA>     <NA>  <NA>             <NA>[] 
+ []
+
+
+Overfull \hbox (17.95088pt too wide) in paragraph at lines 757--757
+[]\T1/cmtt/m/n/12 ## 6       Animalia Chordata Mammalia Carnivora  Felidae Felis Felis silvestris[] 
+ []
+
+
+Overfull \hbox (17.95088pt too wide) in paragraph at lines 757--757
+[]\T1/cmtt/m/n/12 ## 7       Animalia Chordata Mammalia Carnivora  Felidae Felis   Felis nigripes[] 
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 772.
+
+
+Package xcolor Warning: Incompatible color definition on input line 778.
+
+
+Package xcolor Warning: Incompatible color definition on input line 778.
 
 [8]
 
-Package xcolor Warning: Incompatible color definition on input line 669.
+Package xcolor Warning: Incompatible color definition on input line 793.
 
 
-Package xcolor Warning: Incompatible color definition on input line 669.
+Package xcolor Warning: Incompatible color definition on input line 798.
 
 
-Package xcolor Warning: Incompatible color definition on input line 678.
+Package xcolor Warning: Incompatible color definition on input line 798.
 
 
-Package xcolor Warning: Incompatible color definition on input line 684.
+LaTeX Warning: Reference `(' on page 9 undefined on input line 814.
 
 
-Package xcolor Warning: Incompatible color definition on input line 684.
+Overfull \hbox (8.50499pt too wide) in paragraph at lines 809--815
+\T1/ppl/m/n/12 then ex-am-ine whether rogue taxa should be ex-cluded from the anal-y-ses. \T1/cmtt/m/n/12 tree.roguetaxa()
+ []
 
 
-Package xcolor Warning: Incompatible color definition on input line 707.
+Package xcolor Warning: Incompatible color definition on input line 816.
 
 
-Package xcolor Warning: Incompatible color definition on input line 714.
+Package xcolor Warning: Incompatible color definition on input line 820.
 
 
-Package xcolor Warning: Incompatible color definition on input line 714.
+Package xcolor Warning: Incompatible color definition on input line 820.
+
+
+Overfull \hbox (16.11452pt too wide) in paragraph at lines 841--849
+\T1/ppl/m/n/12 be avail-able to any-one in a \T1/cmtt/m/n/12 RMarkdown \T1/ppl/m/n/12 file ac-com-pa-nied by a n \T1/cmtt/m/n/12 R \T1/ppl/m/n/12 workspace \T1/cmtt/m/n/12 phruta_ms.RData\T1/ppl/m/n/12 .
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 850.
 
 [9]
 
-Package xcolor Warning: Incompatible color definition on input line 732.
+Package xcolor Warning: Incompatible color definition on input line 854.
 
 
-Package xcolor Warning: Incompatible color definition on input line 739.
+Package xcolor Warning: Incompatible color definition on input line 854.
 
 
-Package xcolor Warning: Incompatible color definition on input line 739.
-
-
-Overfull \hbox (23.05013pt too wide) in paragraph at lines 752--764
-\T1/cmtt/m/n/10.95 phruta \T1/ppl/m/n/10.95 al-low users to se-lect the de-sired database. The databases fol-low the \T1/cmtt/m/n/10.95 taxize::classification()
- []
+LaTeX Warning: Reference `(' on page 10 undefined on input line 868.
 
 [10]
-
-Package xcolor Warning: Incompatible color definition on input line 768.
-
-
-Package xcolor Warning: Incompatible color definition on input line 775.
-
-
-Package xcolor Warning: Incompatible color definition on input line 775.
-
-
-Package xcolor Warning: Incompatible color definition on input line 806.
-
-
-Package xcolor Warning: Incompatible color definition on input line 816.
-
-
-Package xcolor Warning: Incompatible color definition on input line 816.
-
-[11]
-
-Package xcolor Warning: Incompatible color definition on input line 828.
-
-
-Package xcolor Warning: Incompatible color definition on input line 836.
-
-
-Package xcolor Warning: Incompatible color definition on input line 836.
-
-
-Package xcolor Warning: Incompatible color definition on input line 851.
-
-
-Package xcolor Warning: Incompatible color definition on input line 858.
-
-
-Package xcolor Warning: Incompatible color definition on input line 858.
-
-
-Package xcolor Warning: Incompatible color definition on input line 877.
-
-[12]
-
-Package xcolor Warning: Incompatible color definition on input line 885.
-
-
-Package xcolor Warning: Incompatible color definition on input line 885.
-
-
-Overfull \hbox (1159.85582pt too wide) in paragraph at lines 889--889
-[]\T1/cmtt/m/n/10.95 ## [1] "raxmlHPC -T 4 -f a -p 1234 -x 1234 -m GTRGAMMA -o Polyplectron_inopinatum,Polyplectron_napoleonis,Polyplectron_chalcurum,Polyplectron_bicalcaratum,Polyplectron_malacense,Polyplectron_germaini,Polyplectron_katsumatae -k   -q phruta-partitions.txt  -N 100   -s phruta.phy -n phruta"[] 
- []
-
-
-Package xcolor Warning: Incompatible color definition on input line 900.
-
-
-Package xcolor Warning: Incompatible color definition on input line 904.
-
-
-Package xcolor Warning: Incompatible color definition on input line 904.
-
-
-Overfull \hbox (0.79007pt too wide) in paragraph at lines 920--925
-[]\T1/ppl/m/n/10.95 Crowe, T.M., R.C.K. Bowie, P. Bloomer, T.G. Mandi-wana, T.A.J. Hed-der-son, E. Randi, S. Pereira,
- []
-
-[13] [14]
-<./figs/Quail.jpg, id=56, 1027.84pt x 681.54625pt>
+<./figs/Quail.jpg, id=42, 1027.84pt x 681.54625pt>
 File: ./figs/Quail.jpg Graphic file (type jpg)
 <use ./figs/Quail.jpg>
-Package pdftex.def Info: ./figs/Quail.jpg  used on input line 940.
+Package pdftex.def Info: ./figs/Quail.jpg  used on input line 874.
 (pdftex.def)             Requested size: 980.97502pt x 650.47073pt.
 
-Overfull \hbox (511.22pt too wide) in paragraph at lines 940--940
+Overfull \hbox (511.22pt too wide) in paragraph at lines 874--874
 [][] 
  []
 
 
-LaTeX Warning: Float too large for page by 26.72856pt on input line 941.
+LaTeX Warning: Float too large for page by 27.92465pt on input line 875.
 
-<./figs/UF.Raw.pdf, id=57, 578.16pt x 578.16pt>
+<./figs/UF.Raw.pdf, id=43, 578.16pt x 578.16pt>
 File: ./figs/UF.Raw.pdf Graphic file (type pdf)
 <use ./figs/UF.Raw.pdf>
-Package pdftex.def Info: ./figs/UF.Raw.pdf  used on input line 947.
+Package pdftex.def Info: ./figs/UF.Raw.pdf  used on input line 881.
 (pdftex.def)             Requested size: 469.75385pt x 469.75385pt.
-<./figs/UF.Cur.pdf, id=58, 578.16pt x 578.16pt>
+<./figs/UF.Cur.pdf, id=44, 578.16pt x 578.16pt>
 File: ./figs/UF.Cur.pdf Graphic file (type pdf)
 <use ./figs/UF.Cur.pdf>
-Package pdftex.def Info: ./figs/UF.Cur.pdf  used on input line 956.
+Package pdftex.def Info: ./figs/UF.Cur.pdf  used on input line 890.
 (pdftex.def)             Requested size: 469.75385pt x 469.75385pt.
-<./figs/raxml_ingroup.pdf, id=59, 578.16pt x 578.16pt>
+<./figs/raxml_ingroup.pdf, id=45, 578.16pt x 578.16pt>
 File: ./figs/raxml_ingroup.pdf Graphic file (type pdf)
 <use ./figs/raxml_ingroup.pdf>
-Package pdftex.def Info: ./figs/raxml_ingroup.pdf  used on input line 965.
+Package pdftex.def Info: ./figs/raxml_ingroup.pdf  used on input line 899.
 (pdftex.def)             Requested size: 469.75385pt x 469.75385pt.
-<./figs/phylo_ingroup.pdf, id=60, 578.16pt x 578.16pt>
+<./figs/phylo_ingroup.pdf, id=46, 578.16pt x 578.16pt>
 File: ./figs/phylo_ingroup.pdf Graphic file (type pdf)
 <use ./figs/phylo_ingroup.pdf>
-Package pdftex.def Info: ./figs/phylo_ingroup.pdf  used on input line 973.
+Package pdftex.def Info: ./figs/phylo_ingroup.pdf  used on input line 907.
 (pdftex.def)             Requested size: 469.75385pt x 469.75385pt.
-[15] [16 <./figs/Quail.jpg>] [17 <./figs/UF.Raw.pdf>] [18 <./figs/UF.Cur.pdf>] [19 <./figs/raxml_ingroup.pdf>] [20 <./figs/phylo_ingroup.pdf>]
-
-LaTeX Warning: Float too large for page by 598.69093pt on input line 1183.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-Overfull \hbox (271.64694pt too wide) in paragraph at lines 1191--1366
- [][] 
+<./figs/benchmark.pdf, id=47, 578.16pt x 578.16pt>
+File: ./figs/benchmark.pdf Graphic file (type pdf)
+<use ./figs/benchmark.pdf>
+Package pdftex.def Info: ./figs/benchmark.pdf  used on input line 915.
+(pdftex.def)             Requested size: 469.75385pt x 469.75385pt.
+[11] [12 <./figs/Quail.jpg>] [13 <./figs/UF.Raw.pdf>] [14 <./figs/UF.Cur.pdf>] [15 <./figs/raxml_ingroup.pdf>] [16 <./figs/phylo_ingroup.pdf>] [17 <./figs/benchmark.pdf>] [18] [19] [20] [21]
+Underfull \hbox (badness 1490) in paragraph at lines 1119--1119
+[]\T1/ppl/m/n/12 Table 3: []Ac-ces-sion num-bers for the re-trieved se-
  []
 
 
-LaTeX Warning: Float too large for page by 585.09093pt on input line 1366.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-Overfull \hbox (382.91574pt too wide) in paragraph at lines 1374--1453
- [][] 
+Overfull \hbox (346.81258pt too wide) in alignment at lines 1118--1123
+ [] [] [] [] [] 
  []
 
 
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-Overfull \hbox (820.32256pt too wide) in paragraph at lines 1461--1540
- [][] 
+Underfull \hbox (badness 1490) in paragraph at lines 1124--1124
+[]\T1/ppl/m/n/12 Table 3: Ac-ces-sion num-bers for the re-trieved se-
  []
 
 
-LaTeX Warning: `!h' float specifier changed to `!ht'.
+Overfull \hbox (346.81258pt too wide) in alignment at lines 1123--1128
+ [] [] [] [] [] 
+ []
 
 
-LaTeX Warning: `!h' float specifier changed to `!ht'.
+Overfull \hbox (346.81258pt too wide) in alignment at lines 1128--1130
+ [] [] [] [] [] 
+ []
 
-[21] [22] [23] [24] (./phuta_ms.aux) ) 
+
+Overfull \hbox (346.81258pt too wide) in alignment at lines 1130--1132
+ [] [] [] [] [] 
+ []
+
+
+Overfull \hbox (346.81258pt too wide) in alignment at lines 1132--1284
+ [] [] [] [] [] 
+ []
+
+[22] [23] [24] [25]
+Underfull \hbox (badness 1642) in paragraph at lines 1289--1289
+[]\T1/ppl/m/n/12 Table 4: []Tax-o-nomic in-for-ma-tion for the re-trieved
+ []
+
+
+Overfull \hbox (485.61488pt too wide) in alignment at lines 1288--1293
+ [] [] [] [] [] [] [] [] [] [] 
+ []
+
+
+Underfull \hbox (badness 1642) in paragraph at lines 1294--1294
+[]\T1/ppl/m/n/12 Table 4: Tax-o-nomic in-for-ma-tion for the re-trieved
+ []
+
+
+Overfull \hbox (485.61488pt too wide) in alignment at lines 1293--1298
+ [] [] [] [] [] [] [] [] [] [] 
+ []
+
+
+Overfull \hbox (485.61488pt too wide) in alignment at lines 1298--1300
+ [] [] [] [] [] [] [] [] [] [] 
+ []
+
+
+Overfull \hbox (485.61488pt too wide) in alignment at lines 1300--1302
+ [] [] [] [] [] [] [] [] [] [] 
+ []
+
+
+Overfull \hbox (485.61488pt too wide) in alignment at lines 1302--1350
+ [] [] [] [] [] [] [] [] [] [] 
+ []
+
+[26] [27]
+Overfull \hbox (1207.57579pt too wide) in alignment at lines 1354--1359
+ [] [] [] [] [] [] [] [] [] [] [] [] [] [] 
+ []
+
+
+Overfull \hbox (1207.57579pt too wide) in alignment at lines 1359--1364
+ [] [] [] [] [] [] [] [] [] [] [] [] [] [] 
+ []
+
+
+Overfull \hbox (1207.57579pt too wide) in alignment at lines 1364--1366
+ [] [] [] [] [] [] [] [] [] [] [] [] [] [] 
+ []
+
+
+Overfull \hbox (1207.57579pt too wide) in alignment at lines 1366--1368
+ [] [] [] [] [] [] [] [] [] [] [] [] [] [] 
+ []
+
+
+Overfull \hbox (1207.57579pt too wide) in alignment at lines 1368--1416
+ [] [] [] [] [] [] [] [] [] [] [] [] [] [] 
+ []
+
+[28] [29] [30] (./phuta_ms.aux)
+
+LaTeX Warning: There were undefined references.
+
+ ) 
 Here is how much of TeX's memory you used:
- 13409 strings out of 477035
- 214342 string characters out of 5826891
- 654560 words of memory out of 5000000
- 34284 multiletter control sequences out of 15000+600000
- 512685 words of font info for 127 fonts, out of 8000000 for 9000
+ 13400 strings out of 477035
+ 213828 string characters out of 5826891
+ 613618 words of memory out of 5000000
+ 34277 multiletter control sequences out of 15000+600000
+ 512384 words of font info for 126 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 72i,9n,77p,333b,582s stack positions out of 10000i,1000n,20000p,200000b,200000s
- </Users/cristianroman/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tctt1095.600pk>{/Users/cristianroman/Library/TinyTeX/texmf-dist/fonts/enc/dvips/base/8r.enc} </Users/cristianroman/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1095.600pk> </Users/cristianroman/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecit1095.600pk> </Users/cristianroman/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecit1000.600pk></Users/cristianroman/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></Users/cristianroman/Library/TinyTeX/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></Users/cristianroman/Library/TinyTeX/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></Users/cristianroman/Library/TinyTeX/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></Users/cristianroman/Library/TinyTeX/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on phuta_ms.pdf (24 pages, 1025481 bytes).
+ 72i,7n,77p,306b,540s stack positions out of 10000i,1000n,20000p,200000b,200000s
+{/Users/cristianroman/Library/TinyTeX/texmf-dist/fonts/enc/dvips/base/8r.enc} </Users/cristianroman/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1200.600pk> </Users/cristianroman/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecit1200.600pk> </Users/cristianroman/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecit1095.600pk></Users/cristianroman/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></Users/cristianroman/Library/TinyTeX/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></Users/cristianroman/Library/TinyTeX/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></Users/cristianroman/Library/TinyTeX/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></Users/cristianroman/Library/TinyTeX/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
+Output written on phuta_ms.pdf (30 pages, 1260354 bytes).
 PDF statistics:
- 242 PDF objects out of 1000 (max. 8388607)
- 105 compressed objects within 2 object streams
+ 259 PDF objects out of 1000 (max. 8388607)
+ 118 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 26 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 31 words of extra memory for PDF output out of 10000 (max. 10000000)
 

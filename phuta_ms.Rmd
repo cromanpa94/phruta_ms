@@ -14,7 +14,7 @@ keywords: "R package, Phylogenetics, Reproducibility, Workflow"
 date: "`r format(Sys.time(), '%B %d, %Y')`"
 geometry: margin=1in
 fontfamily: mathpazo
-fontsize: 11pt
+fontsize: 12pt
 spacing: single
 endnote: no
 ---
@@ -32,7 +32,8 @@ knitr::opts_chunk$set(cache = TRUE,
                       fig.process = function(x) {
                       x2 = sub('-\\d+([.][a-z]+)$', '\\1', x)
                       if (file.rename(x, x2)) x2 else x
-                      })
+                      },
+                      tidy.opts = list(width.cutoff = 60), tidy = TRUE)
 ```
 
 
@@ -70,7 +71,7 @@ The current release of `phruta` includes a set of eight major functions. Running
 
 Let's learn how `phruta` works by assembling a molecular dataset at the species level for a few bird clades. Note that athough this tutorial is based on a particular set of taxa, users can decide on what can choose their target clades in other families, orders, or even kingdoms.
 
-Here we will focus on assembling a phylogeny for the new world Quails. Species in this group are classified in the family Odontophoridae, a clade including nearly 34 extant species classified in 10 genera (\@ref(fig:quail)). In general, the higher-level taxonomic information in GenBank for the Odontophoridae is largely congruent with recent studies on the systematics of the group. Howeger, GenBank's the taxonomic backbonone classifies __Ptilopachus__, a genus commonly included under the Odontophoridae, as part of the Phasianidae. We will follow more recent studies suggesting that __Ptilopachus__ is nested within the Odontophoridae. As our outgroup, we will select the Phasianidae. Within this clade, we will explicitly focus on the genus __Polyplectron__, a clade of eight extant species. Finally, given that the systematics of the Odontophoridae has been discussed before using morphological and molecular evidence, we will be able to compare the topology of our tree relative to recent studies (Crowe et al. 2006a, b; Cohen et al. 2012; Hosner et al. 2015). 
+Here we will focus on assembling a phylogeny for the new world Quails. Species in this group are classified in the family Odontophoridae, a clade including nearly 34 extant species classified in 10 genera (\ref(fig:quail)). In general, the higher-level taxonomic information in GenBank for the Odontophoridae is largely congruent with recent studies on the systematics of the group. Howeger, GenBank's the taxonomic backbonone classifies _Ptilopachus_, a genus commonly included under the Odontophoridae, as part of the Phasianidae. We will follow more recent studies suggesting that _Ptilopachus_ is nested within the Odontophoridae. As our outgroup, we will select the Phasianidae. Within this clade, we will explicitly focus on the genus _Polyplectron_, a clade of eight extant species. Finally, given that the systematics of the Odontophoridae has been discussed before using morphological and molecular evidence, we will be able to compare the topology of our tree relative to recent studies (Crowe et al. 2006a, b; Cohen et al. 2012; Hosner et al. 2015). 
 
 ```{r, eval = TRUE, warning = TRUE, message = TRUE, progress = TRUE}
 library(phruta)
@@ -92,18 +93,17 @@ gs.seqs <- gene.sampling.retrieve(organism = c("Odontophoridae",
                                   speciesSampling = TRUE)
 ```
 
-For the search terms, `phruta` was able to retrieve the names for `r nrow(gs.seqs)` gene regions from GenBank. The frequency estimates per gene are based on inter-specific sampling (\@ref(tab:topGenes)). Note that the `gene.sampling.retrieve()` function provides an estimate of the number of species in GenBank that match the taxonomic criteria of the search term and that have sequences for a given gene region. However, this estimate is only as good as the annotations for genes deposited in GenBank.
+For the search terms, `phruta` was able to retrieve the names for `r nrow(gs.seqs)` gene regions from GenBank. The frequency estimates per gene are based on inter-specific sampling (\ref(tab:topGenes)). Note that the `gene.sampling.retrieve()` function provides an estimate of the number of species in GenBank that match the taxonomic criteria of the search term and that have sequences for a given gene region. However, this estimate is only as good as the annotations for genes deposited in GenBank.
 
 We will now generate a preliminary summary of the accession numbers retrieved for the combination of target taxa and gene regions. I call this a preliminary dataset because not all these accession numbers are expected to be in the final molecular dataset. For instance, some sequences may be removed after taxonomic synonyms are identified in the dataset.
 
-Next, we will assemble a species-level summary of accession numbers using the `acc.table.retrieve()` function in `phruta` (i.e. `speciesLevel = TRUE` argument). For simplicity, this tutorial will focus on analyzing gene regions that are sampled in \>20% of the species (`targetGenes` data.frame). The `acc.table` object created below is a `data.frame` object that will later be used to download the relevant gene sequences from GenBank (\@ref(tab:AccN)). 
+Next, we will assemble a species-level summary of accession numbers using the `acc.table.retrieve()` function in `phruta` (i.e. `speciesLevel = TRUE` argument). For simplicity, this tutorial will focus on analyzing gene regions that are sampled in \>20% of the species (`targetGenes` data.frame). The `acc.table` object created below is a `data.frame` object that will later be used to download the relevant gene sequences from GenBank (\ref(tab:AccN)). 
 
 ```{r  results = 'hide'}
 targetGenes <- gs.seqs[gs.seqs$PercentOfSampledSpecies > 20,]
 acc.table <- acc.table.retrieve(
             clades  = c("Odontophoridae", "Ptilopachus", "Polyplectron"),
             genes = targetGenes$Gene,
-            species = NULL,
             speciesLevel = TRUE
           )
 ```
@@ -126,13 +126,13 @@ sqs.curated <- sq.curate(filterTaxonomicCriteria = '[AZ]',
                          removeOutliers = FALSE)
 ```
 
-Running the `sq.curate()` function will create an object of class `list` (i.e. `sqs.curated`) that includes (1) the curated sequences with original names, (2) the curated sequences with species-level names (`renamed_*` prefix), (3) the accession numbers table (`AccessionTable`; \@ref(tab:tw)), and (4) a summary of taxonomic information for all the species sampled in the files (\@ref(tab:tw2), \@ref(tab:tw3)). From here, we will align the sequences that we just curated using `sq.aln()` with default parameters. We're again passing the output from `sq.curate()`, `sqs.curated`, using the `sqs.object` argument in `sq.aln()`.
+Running the `sq.curate()` function will create an object of class `list` (i.e. `sqs.curated`) that includes (1) the curated sequences with original names, (2) the curated sequences with species-level names (`renamed_*` prefix), (3) the accession numbers table (`AccessionTable`; \ref(tab:tw)), and (4) a summary of taxonomic information for all the species sampled in the files (\ref(tab:tw2), \ref(tab:tw3)). From here, we will align the sequences that we just curated using `sq.aln()` with default parameters. We're again passing the output from `sq.curate()`, `sqs.curated`, using the `sqs.object` argument in `sq.aln()`.
 
 ```{r results = 'hide'}
 sqs.aln <- sq.aln(sqs.object = sqs.curated)
 ```
 
-The resulting multiple sequence alignments will be saved to the `sqs.aln` object, a list of alignments. For each of the gene regions, we will have access to the original alignment (`Aln.Original`), the masked one (`Aln.Masked`), and information on the masking process. The raw and masked alignments are presented in \@ref(fig:alnraw) and \@ref(fig:alncur), respectively.
+The resulting multiple sequence alignments will be saved to the `sqs.aln` object, a list of alignments. For each of the gene regions, we will have access to the original alignment (`Aln.Original`), the masked one (`Aln.Masked`), and information on the masking process. The raw and masked alignments are presented in \ref(fig:alnraw) and \ref(fig:alncur), respectively.
 
 ```{r echo = FALSE}
 library(ape)
@@ -182,7 +182,7 @@ In total, code in this section took `r round(end_time-start_time)` minutes to ru
 Phylogenetic inference in `phruta` is conducted using the `tree.raxml()` function. To use this function, we will have to export our sequence alignments locally. We will follow the same folder structure as if we were exporting everything locally ([NEED FIGURE]). Specifically, our sequence alignments will located in `2.Alignments` and we will exclusively export the alignments that were masked.
 
 
-```{r message=FALSE, warning=FALSE}
+```{r message=FALSE, warning=FALSE, include=FALSE}
 dir.create("2.Alignments")
 lapply(seq_along(sqs.aln), function(x){
   ape::write.FASTA(sqs.aln[[x]]$Aln.Masked, 
@@ -193,7 +193,7 @@ lapply(seq_along(sqs.aln), function(x){
 })
 ```
 
-We are now ready to run RAxML. Note that in `tree.raxml()`, we will need to indicate where the aligned sequences are located (`folder` argument), the patterns of the files in the same folder (`FilePatterns` argument; "`Masked_`" in our case), and the total of bootstrap replicates. The `outgroup` argument is optional but since we are interested in calibrating our tree afterwards, we will define it using all the species in __Polyplectron__.
+We are now ready to run RAxML. Note that in `tree.raxml()`, we will need to indicate where the aligned sequences are located (`folder` argument), the patterns of the files in the same folder (`FilePatterns` argument; "`Masked_`" in our case), and the total of bootstrap replicates. The `outgroup` argument is optional but since we are interested in calibrating our tree afterwards, we will define it using all the species in _Polyplectron_.
 
 
 ```{r message=FALSE, warning=FALSE}
@@ -207,10 +207,10 @@ tree.raxml(folder = '2.Alignments',
            )
 ```
 
-The resulting trees are saved in the `3.Phylogeny` folder. For many, the bipartitions tree generated in these runs, `RAxML_bipartitions.phruta`, will be the most relevant. Additionally, `3.Phylogeny` includes `RAxML`-related input and output files. The resulting phylogeny from these analyses is presented in \@ref(fig:raxmlphylo).
+The resulting trees are saved in the `3.Phylogeny` folder. For many, the bipartitions tree generated in these runs, `RAxML_bipartitions.phruta`, will be the most relevant. Additionally, `3.Phylogeny` includes `RAxML`-related input and output files. The resulting phylogeny from these analyses is presented in \ref(fig:raxmlphylo).
 
 
-```{r timetreePlot, message=FALSE, warning=FALSE, include = FALSE}
+```{r raxmlplot, message=FALSE, warning=FALSE, include = FALSE}
 library(phytools)
 raxmlTree <- read.tree("3.Phylogeny/RAxML_bipartitions.phruta")
 raxmlTree$root.edge <- 0.01
@@ -225,6 +225,35 @@ nodelabels(text = raxmlTree$node.label,
            )
 dev.off()
 ```
+
+
+Users can also run partitioned analyses in `RAxML` within `phruta`. This approach is implemented by setting the `partitioned` argument in `tree.raxml` to `TRUE`. For now, partitions are based on the genes are being analyzed. The same model is used to analyze each partition. More details on partitioned analyses can be customized by passing arguments in `ips::raxml`. 
+
+```{r eval = FALSE}
+tree.raxml(folder = "2.Alignments", FilePatterns = "Masked_",
+           raxml_exec = "raxmlHPC", Bootstrap = 100,
+           outgroup = paste(outgroup$species_names, collapse = ","),
+           partitioned = TRUE
+           )
+```
+
+
+```{r raxmlplotpartitioned, message=FALSE, warning=FALSE, include = FALSE}
+library(phytools)
+raxmlTree <- read.tree("3.Phylogeny/RAxML_bipartitions.phruta")
+raxmlTree$root.edge <- 0.01
+raxmlTree <- rootedge.to.singleton(raxmlTree)
+
+pdf("figs/raxml_ingroup_partitioned.pdf", width = 8, height = 8)
+plotTree(ladderize(raxmlTree, right = FALSE))
+nodelabels(text = raxmlTree$node.label,
+           node = 1:raxmlTree$Nnode + Ntip(raxmlTree),
+           frame = "none", 
+           adj = c(1.1, -0.4)
+           )
+dev.off()
+```
+
 
 
 Finally, we note that users will sometimes need to generate constrain tress to seed their searches or limit the tree sampling space. These constrains can be generated using other software including [`TACT: Taxonomic Addition for Complete Trees`](https://github.com/jonchang/tact). 
@@ -271,7 +300,7 @@ geoscalePhylo(tree = ladderize(calTree2,right = FALSE),
 dev.off()
 ```
 
-Running this line will result in a new folder `4.Timetree`, including the different time-calibrated phylogenies obtained (if any) and associated secondary calibrations used in the analyses. The resulting time-calibrated tree is presented in \@ref(fig:timecaltree).
+Running this line will result in a new folder `4.Timetree`, including the different time-calibrated phylogenies obtained (if any) and associated secondary calibrations used in the analyses. The resulting time-calibrated tree is presented in \ref(fig:timecaltree).
 
 
 ## Advanced methods with `phruta` 
@@ -285,19 +314,27 @@ You can use `taxonomy.retrieve()`, a function implemented inside `sq.curate()` i
 phruta:::taxonomy.retrieve(species_names=c("Felis_catus", "PREDICTED:_Vulpes",
                   "Phoca_largha", "PREDICTED:_Phoca" ,
                   "PREDICTED:_Manis" , "Felis_silvestris" , "Felis_nigripes"),
-                  database='gbif', kingdom=NULL)
+                  database = 'gbif')
 ```
 
 However, `gbif` is efficient for retrieving accurate taxonomy when we provide details on the `kingdom`. Given that all the species we're interested in are animals, we could just use the following block of code to curate taxonomic names.
 
 ```{r message=FALSE, warning=FALSE}
-phruta:::taxonomy.retrieve(species_names=c("Felis_catus", "PREDICTED:_Vulpes",
+phruta:::taxonomy.retrieve(species_names = c("Felis_catus", "PREDICTED:_Vulpes",
                   "Phoca_largha", "PREDICTED:_Phoca" ,
                   "PREDICTED:_Manis" , "Felis_silvestris" , "Felis_nigripes"),
-                  database='gbif', kingdom='animals')
+                  database = 'gbif', kingdom = 'animals')
 ```
 
 Depending on your sampling, you could also do the same for plants by using `plants` in the `kingdom` argument instead of `animals`. Now, what if we were interested in following other databases to retrieve taxonomic information for the species in our database? The latest version of `phruta` allow users to select the desired database. The databases follow the `taxize::classification()` function. Options are: `ncbi`, `itis`, `eol`, `tropicos`, `nbn`, `worms`, `natserv`, `bold`, `wiki`, and `pow`. Please select only one. Note that the `gbif` option in `taxize::classification()` is replaced by the internal `gbif` in `phruta`.
+
+
+```{r message=FALSE, warning=FALSE, eval = FALSE}
+phruta:::taxonomy.retrieve(species_names = c("Felis_catus", "PREDICTED:_Vulpes",
+                  "Phoca_largha", "PREDICTED:_Phoca" ,
+                  "PREDICTED:_Manis" , "Felis_silvestris" , "Felis_nigripes"),
+                  database = 'itis')
+```
 
 
 ### Running PartitionFinder in `phruta`
@@ -308,26 +345,15 @@ With the current version of `phruta`, users are able to run `PartitionFinder` v1
 sq.partitionfinderv1(folderAlignments = "2.Alignments",
                     FilePatterns = "Masked_",
                     models = "all"
- )
+                    )
 ```
 
 Unfortunately, the output files are not integrated with the current `phruta` pipeline. This will be part of a new release. However, users can still perform gene-based partitioned analyses within `RAxML` or can use `PartitionFinder`'s output files to inform their own analyses outside `phruta`.
 
-### Partitioned analyses in RAxML
-
-Users can now run partitioned analyses in `RAxML` within `phruta`. This approach is implemented by setting the `partitioned` argument in `tree.raxml` to `TRUE`. For now, partitions are based on the genes are being analyzed. The same model is used to analyze each partition. More details on partitioned analyses can be customized by passing arguments in `ips::raxml`.
-
-```{r}
-tree.raxml(folder = "2.Alignments", FilePatterns = "Masked_",
-           raxml_exec = "raxmlHPC", Bootstrap = 100,
-           outgroup = paste(outgroup$species_names, collapse = ","),
-           partitioned = TRUE
-)
-```
 
 ### Identifying rogue taxa
 
-`phruta` can help users run `RogueNaRok` implemented in the `Rogue` R package. Users can then examine whether rogue taxa should be excluded from the analyses. `tree.roguetaxa()` uses the bootstrap trees generated using the `tree.raxml()` function along with the associated best tree to identify rogue taxa.
+`phruta` can help users run `RogueNaRok` implemented in the `Rogue` R package. Users can then examine whether rogue taxa should be excluded from the analyses. `tree.roguetaxa()` uses the bootstrap trees generated using the `tree.raxml()` function along with the associated best tree to identify rogue taxa. Rogue taxa for the analyses presented in this paper are shown in \ref(table:rogue)
 
 ```{r message=FALSE, warning=FALSE}
 tree.roguetaxa(folder = "3.Phylogeny")
@@ -341,13 +367,13 @@ One of the central points of developing `phruta` was related to increasing the r
 As an example, all the analyses and sequences analyzed in the current manuscript will be available to anyone in a `RMarkdown` file accompanied by a n `R` workspace `phruta_ms.RData`. The `RMarkdown` will allow users to replicate the analyses presented in the current paper. With the workspace, users can choose to use the stored objects instead of performing searches on GenBank and additional taxonomic databases. These two files confer full reproducibility to the analyses presented in this article.
 
 ```{r}
-save(file = "phruta_ms.RData")
+save.image(file = "phruta_ms.RData")
 ```
 
 
 ## Performance
 
-Assessing the performance of `phruta` is intrinsically challenging However, it is expected for functions that scrape and curate information stored in GenBank to show an slow performance on search terms (e.g. clades) with extensive genetic sampling. Below, I focus on comparing the distribution of durations for assembling molecular datasets in seven clades with different sample size.  These estimates encompass all the steps outlined above between `gene.sampling.retrieve()` and `sq.curate`. Time estimates were estimated using the `microbenchmark` `R` package. \@ref(fig:benchmark) shows a summary of `phruta` performance in different clades.
+Assessing the performance of `phruta` is intrinsically challenging However, it is expected for functions that scrape and curate information stored in GenBank to show an slow performance on search terms (e.g. clades) with extensive genetic sampling. Below, I focus on comparing the distribution of durations for assembling molecular datasets in seven clades with different sample size.  These estimates encompass all the steps outlined above between `gene.sampling.retrieve()` and `sq.curate`. Time estimates were estimated using the `microbenchmark` `R` package. \ref(fig:benchmark) shows a summary of `phruta` performance in different clades.
 
 
 
@@ -426,24 +452,16 @@ dev.off()
 
 
 ```{=html}
-<!--
+
 # References
 \setlength{\parindent}{-0.2in}
 \setlength{\leftskip}{0.2in}
 \setlength{\parskip}{8pt}
 \vspace*{-0.2in}
 \noindent
--->
+
 ```
-<http://jboyd.net/Taxo/Odontophoridae.pdf>
 
-Hosner, P.A., E.L. Braun, and R.T. Kimball (2015a), Land connectivity changes and global cooling shaped the colonization history and diversification of New World quail (Aves: Galliformes: Odontophoridae), J. Biogeogr. 42, 1883-1895.
-
-Crowe, T.M., R.C.K. Bowie, P. Bloomer, T.G. Mandiwana, T.A.J. Hedderson, E. Randi, S. Pereira, and J. Wakeling (2006a), Phylogenetics, biogeography and classification of, and character evolution in, gamebirds (Aves: Galliformes): Effects of character exclusion, data partitioning and missing data, Cladistics 22, 495-532.
-
-Crowe, T.M., P. Bloomer, E. Randi, V. Lucchini, R. Kimball, E. Braun, and J.G. Groth (2006b), Supra-generic cladistics of landfowl (Order Galliformes), Acta Zool. Sinica 52, S358-S361.
-
-Cohen, C., J.L. Wakeling, T.G. Mandiwana-Neudani, E. Sande, C. Dranzoa, T.M. Crowe, and R.C.K. Bowie (2012), Phylogenetic affinities of evolutionarily enigmatic African galliforms: the Stone Partridge Ptilopachus petrosus and Nahan's Francolin Francolinus nahani, and support for their sister relationship with New World quails, Ibis 154, 768-780.
 
 \newpage
 
@@ -472,7 +490,6 @@ knitr::include_graphics("./figs/raxml_ingroup.pdf")
 
 \newpage
 
-
 ```{r timecaltree, include=TRUE, fig.cap=c("Time-calibrated phylogeny phylo"), echo=FALSE}
 knitr::include_graphics("./figs/phylo_ingroup.pdf")
 ```
@@ -489,7 +506,7 @@ knitr::include_graphics("./figs/benchmark.pdf")
 \newpage
 
 ```{r topGenes, echo=FALSE}
-kable(head(gs.seqs), caption = "Top six genes sampled in GenBank  for species in Odontophoridae and Polyplectron.", format = "latex") %>%
+kbl(head(gs.seqs), longtable = TRUE, booktabs = TRUE, caption = "Top six genes sampled in GenBank  for species in Odontophoridae and Polyplectron.", format = "latex") %>%
   kable_styling(latex_options = c("hold_position", "repeat_header"))
 ```
 
@@ -497,28 +514,28 @@ kable(head(gs.seqs), caption = "Top six genes sampled in GenBank  for species in
 
 ```{r AccN, echo=FALSE}
 row.names(acc.table) <- NULL
-kable(acc.table[,-2], caption = 'Summary of potential accession numbers for the species in Odontophoridae, our ingroup, and Polyplectron, outgroup genus. This list of sequences has not been curated yet.', format = "latex") %>%
+kbl(acc.table[,-2], longtable = TRUE, booktabs = TRUE, caption = 'Summary of potential accession numbers for the species in Odontophoridae, our ingroup, and Polyplectron, outgroup genus. This list of sequences has not been curated yet.', format = "latex") %>%
   kable_styling(latex_options = c("hold_position", "repeat_header"))
 ```
 
 \newpage
 
 ```{r tw, echo = FALSE}
-kable(sqs.curated$AccessionTable, caption = "Accession numbers for the retrieved sequences. This dataset has been curated.", format = "latex") %>%
+kbl(sqs.curated$AccessionTable, longtable = TRUE, booktabs = TRUE, caption = "Accession numbers for the retrieved sequences. This dataset has been curated.", format = "latex") %>%
   kable_styling(latex_options = c("hold_position", "repeat_header"))
 ```
 
 \newpage
 
 ```{r tw2, echo = FALSE}
-kable(sqs.curated$Taxonomy, caption = "Taxonomic information for the retrieved species", format = "latex") %>%
+kbl(sqs.curated$Taxonomy, longtable = TRUE, booktabs = TRUE, caption = "Taxonomic information for the retrieved species", format = "latex") %>%
   kable_styling(latex_options = c("hold_position", "repeat_header"))
 ```
 
 \newpage
 
 ```{r tw3, echo = FALSE}
-kable(sqs.curated$Taxonomy.Sampling, caption = "Taxonomic sampling across gene regions", format = "latex") %>%
+kbl(sqs.curated$Taxonomy.Sampling, longtable = TRUE, booktabs = TRUE, caption = "Taxonomic sampling across gene regions", format = "latex") %>%
   kable_styling(latex_options = c("hold_position", "repeat_header"))
 ```
 
@@ -530,7 +547,7 @@ rt <- read.csv("3.1.RogueTaxa/RogueTaxa.csv")[,-1]
 
 
 ```{r rogue, echo = FALSE}
-kable(rt, caption = "Results of RogueNaRock", format = "latex") %>%
+kbl(rt, caption = "Results of RogueNaRock", longtable = TRUE, booktabs = TRUE, format = "latex") %>%
   kable_styling(latex_options = c("hold_position", "repeat_header"))
 ```
 \newpage
@@ -544,7 +561,8 @@ unlink(c("0.Sequences",
          "3.Phylogeny", 
          "3.1.RogueTaxa",
          "3.2.Phylogeny.constraint",
-         "4.Timetree"), 
+         "4.Timetree",
+         "_cache"), 
        recursive = TRUE)
 ```
 
