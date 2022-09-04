@@ -73,7 +73,7 @@ Let's learn how `phruta` works by assembling a molecular dataset at the species 
 
 Here we will focus on assembling a phylogeny for the new world Quails. Species in this group are classified in the family Odontophoridae, a clade including nearly 34 extant species classified in 10 genera (\ref(fig:quail)). In general, the higher-level taxonomic information in GenBank for the Odontophoridae is largely congruent with recent studies on the systematics of the group. Howeger, GenBank's the taxonomic backbonone classifies _Ptilopachus_, a genus commonly included under the Odontophoridae, as part of the Phasianidae. We will follow more recent studies suggesting that _Ptilopachus_ is nested within the Odontophoridae. As our outgroup, we will select the Phasianidae. Within this clade, we will explicitly focus on the genus _Polyplectron_, a clade of eight extant species. Finally, given that the systematics of the Odontophoridae has been discussed before using morphological and molecular evidence, we will be able to compare the topology of our tree relative to recent studies (Crowe et al. 2006a, b; Cohen et al. 2012; Hosner et al. 2015). 
 
-```{r, eval = TRUE, warning = TRUE, message = TRUE, progress = TRUE}
+```{r include=FALSE}
 library(phruta)
 ```
 
@@ -90,7 +90,10 @@ Alternatively, we could use `phruta` to figure out what genes are well sampled i
 gs.seqs <- gene.sampling.retrieve(organism = c("Odontophoridae", 
                                                "Ptilopachus",
                                                "Polyplectron"), 
-                                  speciesSampling = TRUE)
+                                  speciesSampling = TRUE,
+                                  npar = 6,
+                                  nSearchesBatch = 500
+)
 ```
 
 For the search terms, `phruta` was able to retrieve the names for `r nrow(gs.seqs)` gene regions from GenBank. The frequency estimates per gene are based on inter-specific sampling (\ref(tab:topGenes)). Note that the `gene.sampling.retrieve()` function provides an estimate of the number of species in GenBank that match the taxonomic criteria of the search term and that have sequences for a given gene region. However, this estimate is only as good as the annotations for genes deposited in GenBank.
@@ -104,7 +107,9 @@ targetGenes <- gs.seqs[gs.seqs$PercentOfSampledSpecies > 20,]
 acc.table <- acc.table.retrieve(
             clades  = c("Odontophoridae", "Ptilopachus", "Polyplectron"),
             genes = targetGenes$Gene,
-            speciesLevel = TRUE
+            speciesLevel = TRUE,
+            npar = 6,
+            nSearchesBatch = 500
           )
 ```
 
@@ -382,44 +387,62 @@ library(microbenchmark)
 
 if ( !"Bench.csv" %in% list.files()) {
 
-clades <- c("Odontophoridae", 
-            "Trichostrongylidae", 
-            "Dicksoniaceae", 
-            "Halobates",
-            "Ctenidae",
-            "Psocidae",
-            "Treubiales"
-            ) 
+#Define parameters
+npar <- c(1:8) #Number of cores
+nSearchesBatch <- c(50, 100, 300, 500, 1000, 5000) #Number of searches per batch
+params <- expand.grid(npar = npar, nSearchesBatch = nSearchesBatch)
 
-testBench <- function(clade){
-gs.seqs <- gene.sampling.retrieve(organism = clade, 
-                                  speciesSampling = TRUE)
-
-targetGenes <- gs.seqs[gs.seqs$PercentOfSampledSpecies > 20,]
-acc.table <- acc.table.retrieve(
-  clades  = clade,
-  genes = targetGenes$Gene,
-  species = NULL,
-  speciesLevel = TRUE
-)
-
-sqs.downloaded <- sq.retrieve.indirect(acc.table = acc.table, 
-                                       download.sqs = FALSE)
-
-sqs.curated <- sq.curate(filterTaxonomicCriteria = '[AZ]',
-                         kingdom = NULL, 
-                         sqs.object = sqs.downloaded,
-                         removeOutliers = FALSE)
-
+#Define function
+testBench <- function(npar, nSearchesBatch){
+gs.seqs <- gene.sampling.retrieve(organism = c("Odontophoridae", 
+                                               "Ptilopachus",
+                                               "Polyplectron"), 
+                                  speciesSampling = TRUE,
+                                  npar = npar,
+                                  nSearchesBatch = nSearchesBatch)
+if (nrow(gs.seqs) == 0) stop("No genes found.\nTry using another npar/SearchesBatch combination\n")
 }
 
-benchResults <- lapply(clades, function(x){
-  summary(microbenchmark(testBench(x), times = 5))
+benchResults <- lapply(1:nrow(params), function(x){
+    tryCatch({
+  Sys.sleep(10)
+  cat("\n",x, "/", nrow(params), "\n")
+  ds <- summary(microbenchmark(testBench(npar = params$npar[x], 
+                                   nSearchesBatch = params$nSearchesBatch[x]), 
+                         times = 3,
+                         unit = "s"))
+  ds <- cbind.data.frame(params[x,], ds)
+  write.csv(ds, paste0('bench/bench_', paste(params[x,], collapse = "_"), '.csv'))
+  return(ds)
+  Sys.sleep(60)
+    }, error = function(e){})
 })
 
-BenchComplete <- do.call(rbind, benchResults)
-BenchComplete <- cbind.data.frame(clade = clades, BenchComplete)
+dsts <- lapply(list.files("bench", "bench_", 
+                          full.names = TRUE), 
+               read.csv)
+BenchComplete <- do.call(rbind, dsts)
 write.csv(BenchComplete, "Bench.csv")
+
+library(ggplot2)
+library(ggthemr)
+ggthemr('light')
+
+pdf("figs/performance.pdf", width = 6, height = 6)
+ggplot(BenchComplete, aes(x = factor(npar), 
+                          y = mean/60, 
+                          color = factor(nSearchesBatch),
+                          group = factor(nSearchesBatch)
+                          )) +
+  geom_point( size = 2) +
+  geom_errorbar(aes(ymin = lq/60, ymax = uq/60), width = .1, size = .5) +
+  geom_line(size = .8) +
+  ylab("Time (minutes)") +
+  xlab("Number of cores") +
+  scale_color_discrete(name = "Number of hits per search") +
+  theme(legend.position = "bottom", text = element_text(size = 14, color = "black"))
+dev.off()
+
 }
 
 ```
@@ -497,8 +520,8 @@ knitr::include_graphics("./figs/phylo_ingroup.pdf")
 \newpage
 
 
-```{r benchmark, include=TRUE, fig.cap=c("Time-calibrated phylogeny phylo"), echo=FALSE}
-knitr::include_graphics("./figs/benchmark.pdf")
+```{r benchmark, include=TRUE, fig.cap=c("Results for benchmarking analyses"), echo=FALSE}
+knitr::include_graphics("./figs/performance.pdf")
 ```
 
 

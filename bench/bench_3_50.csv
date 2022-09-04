@@ -1,0 +1,2 @@
+"","npar","nSearchesBatch","expr","min","lq","mean","median","uq","max","neval"
+"3",3,50,"testBench(npar = params$npar[x], nSearchesBatch = params$nSearchesBatch[x])",107.27347639,108.6917883885,110.134331304333,110.110100387,111.5647587615,113.019417136,3
