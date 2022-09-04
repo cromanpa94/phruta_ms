@@ -521,22 +521,25 @@ kbl(acc.table[,-2], longtable = TRUE, booktabs = TRUE, caption = 'Summary of pot
 \newpage
 
 ```{r tw, echo = FALSE}
-kbl(sqs.curated$AccessionTable, longtable = TRUE, booktabs = TRUE, caption = "Accession numbers for the retrieved sequences. This dataset has been curated.", format = "latex") %>%
-  kable_styling(latex_options = c("hold_position", "repeat_header"))
+kbl(sqs.curated$AccessionTable[,-5], longtable = TRUE, booktabs = TRUE, caption = "Accession numbers for the retrieved sequences. This dataset has been curated.", format = "latex") %>%
+  kable_styling(latex_options = c("hold_position", "repeat_header"))%>%
+landscape()
 ```
 
 \newpage
 
 ```{r tw2, echo = FALSE}
-kbl(sqs.curated$Taxonomy, longtable = TRUE, booktabs = TRUE, caption = "Taxonomic information for the retrieved species", format = "latex") %>%
-  kable_styling(latex_options = c("hold_position", "repeat_header"))
+kbl(sqs.curated$Taxonomy[,c(1:7)], longtable = TRUE, booktabs = TRUE, caption = "Taxonomic information for the retrieved species", format = "latex") %>%
+  kable_styling(latex_options = c("hold_position", "repeat_header"))%>%
+landscape()
 ```
 
 \newpage
 
 ```{r tw3, echo = FALSE}
-kbl(sqs.curated$Taxonomy.Sampling, longtable = TRUE, booktabs = TRUE, caption = "Taxonomic sampling across gene regions", format = "latex") %>%
-  kable_styling(latex_options = c("hold_position", "repeat_header"))
+kbl(sqs.curated$Taxonomy.Sampling[,c(1:7)], longtable = TRUE, booktabs = TRUE, caption = "Taxonomic sampling across gene regions", format = "latex") %>%
+  kable_styling(latex_options = c("hold_position", "repeat_header"))%>%
+landscape()
 ```
 
 \newpage
@@ -548,7 +551,8 @@ rt <- read.csv("3.1.RogueTaxa/RogueTaxa.csv")[,-1]
 
 ```{r rogue, echo = FALSE}
 kbl(rt, caption = "Results of RogueNaRock", longtable = TRUE, booktabs = TRUE, format = "latex") %>%
-  kable_styling(latex_options = c("hold_position", "repeat_header"))
+  kable_styling(latex_options = c("hold_position", "repeat_header")) %>%
+  landscape()
 ```
 \newpage
 
