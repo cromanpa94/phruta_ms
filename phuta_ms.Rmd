@@ -41,11 +41,7 @@ knitr::opts_chunk$set(cache = TRUE,
 
 ## The `phruta` `R` package
 
-The `phruta` package is designed to simplify the basic phylogenetic pipeline in `R`. `phruta` is expected to allow scientists from different backgrounds to assemble molecular databases or phylogenies for particular taxa with as minimal complexity and maximal reproducibility as possible. All the code in `phruta` is run within the same software (`R`) and data from intermediate steps are either stored to the environment or can be exported locally to different folders. In general, `phruta` is able to (1) find potentially (phylogenetically) relevant gene regions for a given set of taxa based on GenBank, (2) retrieve gene sequences and curate taxonomic information from the same database, (3) combine downloaded and local gene sequences, and (4) perform sequence alignment, phylogenetic inference, and basic tree dating tasks.
-
-## Alternatives to phruta
-
-Similar functionalities for assembling curated molecular datasets for phylogenetic analyses can be found in [`phylotaR`](https://github.com/ropensci/phylotaR) and [SuperCRUNCH](https://github.com/dportik/SuperCRUNCH). However, `phylotaR` is limited to downloading and curating sequences (e.g. it does not align sequences). Similarly, `SuperCRUNCH` only curates sequences that are already stored locally. In fact, `phruta` is closer to [`SUPERSMART`](https://academic.oup.com/sysbio/article/66/2/152/2418028) and the associated `R` workflow [`SUPERSMARTR`](https://github.com/AntonelliLab/supersmartR). However, most of the applications in the different packages that are part of `SUPERSMARTR` are simplified in `phruta`. Standalone applications that might resemble `phruta` could include `MEGA` and geneious. However, analyses in these two alternatives are either poorly reproducible (e.g. `MEGA`) or not all the functions are freely available  to everyone (e.g. geneious has a paid version). 
+The `phruta` package is designed to simplify the basic phylogenetic pipeline in `R`. `phruta` is expected to allow scientists from different backgrounds assemble molecular databases or phylogenies for particular taxonomic groups, with as minimal complexity and maximal reproducibility as possible. All the code in `phruta` runs within `R`. Data from intermediate steps are either stored to the environment or can be exported locally to particular folders. In general, `phruta` is able to (1) find identify phylogenetically relevant gene regions for a given set of taxa based on sequences available from GenBank, (2) retrieve gene sequences and curate taxonomic information from the same database, (3) combine downloaded and local gene sequences, and (4) perform sequence alignment, phylogenetic inference, and basic tree dating tasks. A shiny app, `salphycon`, is also available as an additional resource to running the basic functions in `phruta`.
 
 ## `phruta` in a nutshell
 
@@ -471,7 +467,9 @@ print(p)
 dev.off()
 
 ```
+## Alternatives to phruta
 
+Similar functionalities for assembling curated molecular datasets for phylogenetic analyses can be found in [`phylotaR`](https://github.com/ropensci/phylotaR) and [SuperCRUNCH](https://github.com/dportik/SuperCRUNCH). However, `phylotaR` is limited to downloading and curating sequences (e.g. it does not align sequences). Similarly, `SuperCRUNCH` only curates sequences that are already stored locally. In fact, `phruta` is closer to [`SUPERSMART`](https://academic.oup.com/sysbio/article/66/2/152/2418028) and the associated `R` workflow [`SUPERSMARTR`](https://github.com/AntonelliLab/supersmartR). However, most of the applications in the different packages that are part of `SUPERSMARTR` are simplified in `phruta`. Standalone applications that might resemble `phruta` could include `MEGA` and geneious. However, analyses in these two alternatives are either poorly reproducible (e.g. `MEGA`) or not all the functions are freely available  to everyone (e.g. geneious has a paid version). 
 
 
 ```{=html}
